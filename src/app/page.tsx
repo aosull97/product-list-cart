@@ -16,9 +16,9 @@ export default async function Home() {
   const products = JSON.parse(dataFile);
 
   return (
-    <div className={`${redHatText.className} bg-rose-50 text-base text-black`}>
+    <div className={`${redHatText.className} bg-rose-50 text-base text-rose-900`}>
       <div>
-        <h1 className=" pl-6 p-4">Desserts</h1>
+        <h1 className="pl-6 p-4 font-bold text-2xl">Desserts</h1>
       </div>
       <div className="flex flex-col items-center gap-4 w-100% px-6">
         {products.map(
