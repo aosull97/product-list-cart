@@ -2,12 +2,14 @@ import React from "react";
 
 const Product = ({
   name,
-  image,
+  mobileImage,
+  desktopImage,
   category,
   price,
 }: {
   name: string;
-  image: string;
+  mobileImage: string;
+  desktopImage: string;
   category: string;
   price: number;
 }) => {
@@ -16,8 +18,20 @@ const Product = ({
   return (
     <div>
       <div className="relative">
-        <img src={image} alt={name} className="rounded-lg w-full" />
-        <button className="flex space-x-2 rounded-2xl px-4 py-1 text-center -bottom-4 right-1/2 transform translate-x-1/2 bg-white absolute border-gray-500 border">
+
+      <div className="block md:hidden"><img src={mobileImage} alt={name} className="rounded-lg w-full pt-2" /></div>
+
+        <div className="hidden md:block">
+        <img
+          src={desktopImage}
+          alt={name}
+          className="rounded-lg w-full pt-2"
+        />
+        </div>
+        
+       
+        
+        <button className="flex justify-evenly space-x-2 rounded-2xl px-4 py-2 text-center -bottom-4 right-1/2 transform translate-x-1/2 bg-white absolute border-gray-500 border md:w-2/3 md:space-x-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="21"
@@ -35,7 +49,7 @@ const Product = ({
               </clipPath>
             </defs>
           </svg>
-          <p className="font-semibold text-sm">Add to Cart</p>
+          <p className="font-semibold text-sm ">Add to Cart</p>
         </button>
       </div>
       <div className="pt-8">
