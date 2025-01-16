@@ -1,6 +1,12 @@
 import { promises as fs } from "fs";
 import Product from "./components/Product";
 import { Key } from "react";
+import { Red_Hat_Text } from "next/font/google";
+
+const redHatText = Red_Hat_Text({
+  subsets: ['latin-ext'],
+  weight: ['400', '600', '700']
+})
 
 export default async function Home() {
   const dataFile = await fs.readFile(
@@ -10,7 +16,7 @@ export default async function Home() {
   const products = JSON.parse(dataFile);
 
   return (
-    <div className="bg-rose-50 text-base text-black">
+    <div className={`${redHatText.className} bg-rose-50 text-base text-black`}>
       <div>
         <h1 className=" pl-6 p-4">Desserts</h1>
       </div>
