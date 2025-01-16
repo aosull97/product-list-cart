@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+       'rose-50': 'hsl(20, 50%, 98%)',
+       'rose-900': 'hsl(14, 65%, 9%)',
       },
     },
   },
