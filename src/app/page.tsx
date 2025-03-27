@@ -18,7 +18,7 @@ export default async function Home() {
   return (
     <div className={`${redHatText.className} bg-rose-50 text-base text-rose-900`}>
       <div>
-        <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
+        <h1 className="pl-6 p-4 font-bold text-3xl">Dessert</h1>
       </div>
       <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3">
         {products.map(
