@@ -1,6 +1,5 @@
 import { promises as fs } from "fs";
 import Product from "./components/Product";
-import { Key } from "react";
 import { Red_Hat_Text } from "next/font/google";
 
 const redHatText = Red_Hat_Text({
@@ -23,14 +22,13 @@ export default async function Home() {
       <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3">
         {products.map(
           (product: {
-            id: Key | null | undefined;
             name: string;
             image: { mobile: string; desktop: string };
             category: string;
             price: number;
           }) => (
             <Product
-              key={product.id}
+              key={`${product.name}-${product.category}`}
               name={product.name}
               mobileImage={product.image.mobile}
               desktopImage={product.image.desktop}
