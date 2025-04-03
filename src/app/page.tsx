@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import Product from "./components/Product";
 import { Red_Hat_Text } from "next/font/google";
+import Cart from "./components/Cart";
 
 const redHatText = Red_Hat_Text({
   subsets: ['latin-ext'],
@@ -38,6 +39,10 @@ export default async function Home() {
           )
         )}
       </div>
+      <div>
+        <Cart />
+      </div>
+
     </div>
   );
 }
