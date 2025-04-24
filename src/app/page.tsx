@@ -1,7 +1,10 @@
+'use client'
+
 import { promises as fs } from "fs";
 import Product from "./components/Product";
 import { Red_Hat_Text } from "next/font/google";
 import Cart from "./components/Cart";
+import { useState } from "react";
 
 const redHatText = Red_Hat_Text({
   subsets: ['latin-ext'],
@@ -14,6 +17,13 @@ export default async function Home() {
     "utf8"
   );
   const products = JSON.parse(dataFile);
+
+  const [cartItemCount, setCartItemCount] = useState(0);
+
+  const handleAddToCart = () => {
+    setCartItemCount(cartItemCount + 1);
+  };
+
 
   return (
     <div className={`${redHatText.className} bg-rose-50 text-base text-rose-900`}>
@@ -35,12 +45,13 @@ export default async function Home() {
               desktopImage={product.image.desktop}
               category={product.category}
               price={product.price}
+              onAddToCart={handleAddToCart}
             />
           )
         )}
       </div>
       <div>
-        <Cart />
+        <Cart cartCount={cartItemCount} />
       </div>
 
     </div>

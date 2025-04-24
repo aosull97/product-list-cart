@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from "react";
 
-const Cart = () => {
+const Cart = ({ cartCount }: { cartCount: number }) => {
   return (
     <div>
-        <h1>Your Cart (0)</h1>
+      <h1>Your Cart ({cartCount})</h1>
     </div>
-  )
-}
-export default Cart
+  );
+};
+export default Cart;
