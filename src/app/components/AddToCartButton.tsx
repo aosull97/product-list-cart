@@ -5,7 +5,7 @@ const AddToCartButton = ({ onAddToCart }: { onAddToCart: () => void }) => {
     <div>
       <button
         onClick={onAddToCart}
-        className="flex justify-evenly space-x-2 rounded-2xl px-4 py-2 text-center -bottom-4 right-1/2 transform translate-x-1/2 bg-white absolute border-gray-500 border md:w-2/3 md:space-x-1"
+        className="flex justify-evenly space-x-2 rounded-2xl px-4 py-2 text-center -bottom-4 right-1/2 transform translate-x-1/2 bg-white absolute border-gray-500 border md:w-2/3 md:space-x-1 hover:border-red hover:text-red "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const AddToCartButton = ({ onAddToCart }: { onAddToCart: () => void }) => {
             </clipPath>
           </defs>
         </svg>
-        <p className="font-semibold text-sm ">Add to Cart</p>
+        <p className="font-semibold text-sm">Add to Cart</p>
       </button>
     </div>
   );
