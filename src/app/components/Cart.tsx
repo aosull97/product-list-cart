@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 const Cart = ({ cartCount }: { cartCount: number }) => {
   return (
     <div>

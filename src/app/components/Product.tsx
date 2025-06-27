@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+'use client'
 
 import AddToCartButton from "./AddToCartButton";
+import { useState } from "react";
 
 const Product = ({
   name,
@@ -8,7 +9,8 @@ const Product = ({
   desktopImage,
   category,
   price,
-  onAddToCart
+  onAddToCart,
+
 }: {
   name: string;
   mobileImage: string;
@@ -17,7 +19,15 @@ const Product = ({
   price: number;
   onAddToCart: () => void;
 }) => {
+
   const formattedPrice = price.toFixed(2);
+  const [addToCartButtonClicked, setAddToCartButtonClicked] = useState(false);
+
+  const handleAddToCartButtonClick = () => {
+    setAddToCartButtonClicked(true);
+    onAddToCart();
+  };
+
 
   return (
     <div>
@@ -38,7 +48,11 @@ const Product = ({
           />
         </div>
 
-        <AddToCartButton onAddToCart={onAddToCart} />
+        <AddToCartButton 
+          onAddToCart={handleAddToCartButtonClick} 
+          addToCartButtonClicked={addToCartButtonClicked} 
+          />
+          
       </div>
       <div className="pt-8">
         <p className="text-sm text-rose-500">{category}</p>
