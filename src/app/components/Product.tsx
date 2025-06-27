@@ -10,6 +10,8 @@ const Product = ({
   category,
   price,
   onAddToCart,
+  handleIncrement,
+  handleDecrement,
 
 }: {
   name: string;
@@ -18,6 +20,8 @@ const Product = ({
   category: string;
   price: number;
   onAddToCart: () => void;
+  handleIncrement: () => void;
+  handleDecrement: () => void;
 }) => {
 
   const formattedPrice = price.toFixed(2);
@@ -51,6 +55,8 @@ const Product = ({
         <AddToCartButton 
           onAddToCart={handleAddToCartButtonClick} 
           addToCartButtonClicked={addToCartButtonClicked} 
+          handleIncrement={handleIncrement}
+          handleDecrement={handleDecrement}
           />
           
       </div>

@@ -18,6 +18,18 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
     setCartItemCount(cartItemCount + 1);
   };
 
+  // Function to pass to the IncrementIcon
+  const handleIncrement = () => {
+    setCartItemCount(cartItemCount + 1);
+  };
+
+  // Function to pass to the DecrementIcon
+  const handleDecrement = () => {
+    if (cartItemCount > 0) {
+      setCartItemCount(cartItemCount - 1);
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3">
@@ -30,6 +42,8 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
             category={product.category}
             price={product.price}
             onAddToCart={handleAddToCart}
+            handleIncrement={handleIncrement}
+            handleDecrement={handleDecrement}
           />
         ))}
       </div>

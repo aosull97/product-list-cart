@@ -2,12 +2,12 @@ import React from "react";
 
 interface IncrementIconProps {
   className?: string;
-  width?: number;
-  height?: number;
+  onClick?: () => void;
 }
 
 const IncrementIcon: React.FC<IncrementIconProps> = ({
   className,
+  onClick,
 }) => {
   return (
     <svg
@@ -17,6 +17,7 @@ const IncrementIcon: React.FC<IncrementIconProps> = ({
       fill="none"
       viewBox="0 0 10 10"
       className={`rounded-full border-2 p-0.5 text-white hover:bg-white hover:text-red transition-colors ${className || ''}`}
+      onClick={onClick}
     >
       <path
         fill="currentColor"

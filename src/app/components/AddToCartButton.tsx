@@ -4,9 +4,14 @@ import DecrementIcon from "./icons/DecrementIcon";
 const AddToCartButton = ({
   onAddToCart,
   addToCartButtonClicked,
+  handleIncrement,
+  handleDecrement,
+  
 }: {
   onAddToCart: () => void;
   addToCartButtonClicked: boolean;
+  handleIncrement: () => void;
+  handleDecrement: () => void;
 }) => {
   if (addToCartButtonClicked === false) {
     return (
@@ -39,19 +44,23 @@ const AddToCartButton = ({
   } else {
     return (
       <div>
-        <button
-          onClick={onAddToCart}
-          className="flex justify-evenly space-x-2 rounded-3xl px-4 py-3 text-center -bottom-5 right-1/2 transform translate-x-1/2 bg-red absolute border-red border md:w-2/3 md:space-x-1 text-white"
-          disabled={true}
-        >
+        <div
          
-        <DecrementIcon />
+          className="flex justify-evenly space-x-2 rounded-3xl px-4 py-3 text-center -bottom-5 right-1/2 transform translate-x-1/2 bg-red absolute border-red border md:w-2/3 md:space-x-1 text-white"
+          
+        >
+          <button>
+            <DecrementIcon onClick={handleDecrement} />
+          </button>
+
 
           <p className="font-semibold text-sm px-8">1</p>
 
-         <IncrementIcon />
 
-        </button>
+          <button>
+            <IncrementIcon onClick={handleIncrement} />
+          </button>
+        </div>
       </div>
     );
   }
