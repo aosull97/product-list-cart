@@ -13,20 +13,24 @@ interface ProductData {
 
 const ProductList = ({ products }: { products: ProductData[] }) => {
   const [cartItemCount, setCartItemCount] = useState(0);
+  const [productCount, setProductCount] = useState(0);
 
   const handleAddToCart = () => {
     setCartItemCount(cartItemCount + 1);
+    setProductCount(1)
   };
 
   // Function to pass to the IncrementIcon
   const handleIncrement = () => {
     setCartItemCount(cartItemCount + 1);
+    setProductCount(productCount + 1)
   };
 
   // Function to pass to the DecrementIcon
   const handleDecrement = () => {
     if (cartItemCount > 0) {
       setCartItemCount(cartItemCount - 1);
+      setProductCount(productCount - 1)
     }
   };
 
@@ -44,6 +48,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
             onAddToCart={handleAddToCart}
             handleIncrement={handleIncrement}
             handleDecrement={handleDecrement}
+            productCount={productCount}
           />
         ))}
       </div>

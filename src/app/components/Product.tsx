@@ -12,6 +12,7 @@ const Product = ({
   onAddToCart,
   handleIncrement,
   handleDecrement,
+  productCount,
 
 }: {
   name: string;
@@ -22,6 +23,7 @@ const Product = ({
   onAddToCart: () => void;
   handleIncrement: () => void;
   handleDecrement: () => void;
+  productCount: number;
 }) => {
 
   const formattedPrice = price.toFixed(2);
@@ -57,6 +59,7 @@ const Product = ({
           addToCartButtonClicked={addToCartButtonClicked} 
           handleIncrement={handleIncrement}
           handleDecrement={handleDecrement}
+          productCount={productCount}
           />
           
       </div>

@@ -6,14 +6,16 @@ const AddToCartButton = ({
   addToCartButtonClicked,
   handleIncrement,
   handleDecrement,
+  productCount,
   
 }: {
   onAddToCart: () => void;
   addToCartButtonClicked: boolean;
   handleIncrement: () => void;
   handleDecrement: () => void;
+  productCount: number;
 }) => {
-  if (addToCartButtonClicked === false) {
+  if (addToCartButtonClicked === false || productCount === 0) {
     return (
       <div>
         <button
@@ -54,7 +56,7 @@ const AddToCartButton = ({
           </button>
 
 
-          <p className="font-semibold text-sm px-8">1</p>
+          <p className="font-semibold text-sm px-8">{productCount}</p>
 
 
           <button>
