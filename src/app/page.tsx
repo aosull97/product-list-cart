@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <div
-      className={`${redHatText.className} bg-rose-50 text-base text-rose-900`}
+      className={`${redHatText.className} bg-rose-50 text-base text-rose-900 pb-6`}
     >
       <div>
         <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
