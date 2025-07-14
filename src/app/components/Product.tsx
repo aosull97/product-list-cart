@@ -64,8 +64,8 @@ const Product = ({
           
       </div>
       <div className="pt-8">
-        <p className="text-sm text-rose-500">{category}</p>
-        <p className="font-semibold">{name}</p>
+        <p className="text-xs text-rose-500">{category}</p>
+        <p className="font-semibold text-sm">{name}</p>
         <p className="text-red font-semibold">£{formattedPrice}</p>
       </div>
     </div>

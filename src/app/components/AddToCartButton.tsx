@@ -20,7 +20,7 @@ const AddToCartButton = ({
       <div>
         <button
           onClick={onAddToCart}
-          className="flex justify-evenly space-x-2 rounded-3xl px-4 py-3 text-center -bottom-5 right-1/2 transform translate-x-1/2 bg-white absolute border-gray-500 border md:w-2/3 md:space-x-1 hover:border-red hover:text-red "
+          className="flex justify-evenly space-x-2 rounded-3xl px-4 py-3 text-center -bottom-5 right-1/2 transform translate-x-1/2 bg-white absolute border-gray-500 border w-1/2 md:w-4/5 md:space-x-1 hover:border-red hover:text-red "
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

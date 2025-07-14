@@ -35,8 +35,10 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
   };
 
   return (
-    <div>
-      <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3">
+    <div className="lg:p-6">
+      <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
+    <div className="lg:flex">
+      <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3 lg:w-4/5">
         {products.map((product) => (
           <Product
             key={`${product.name}-${product.category}`}
@@ -52,9 +54,10 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
           />
         ))}
       </div>
-      <div>
+      <div className="md:-mt-4">
         <Cart cartCount={cartItemCount} />
       </div>
+    </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@ const Cart = ({ cartCount }: { cartCount: number }) => {
       {cartCount === 0 ? 
       
       <div className="flex flex-col gap-4 w-100% px-6 items-center">
-      <img src="/images/illustration-empty-cart.svg" alt="empty cart" width={150} height={150} />
+      <img src="/images/illustration-empty-cart.svg" alt="empty cart" width={75} height={75} />
       <p className="font-semibold text-rose-500">Your added items will appear here</p>
       </div>
       

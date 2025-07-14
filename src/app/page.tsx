@@ -18,9 +18,6 @@ export default async function Home() {
     <div
       className={`${redHatText.className} bg-rose-50 text-base text-rose-900 pb-6`}
     >
-      <div>
-        <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
-      </div>
       <ProductList products={products} />
     </div>
   );
