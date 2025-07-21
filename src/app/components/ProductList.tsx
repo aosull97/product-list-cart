@@ -11,28 +11,36 @@ interface ProductData {
   price: number;
 }
 
+interface CartItem {
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 const ProductList = ({ products }: { products: ProductData[] }) => {
-  const [cartItemCount, setCartItemCount] = useState(0);
-  const [productCount, setProductCount] = useState(0);
+  const [cartItems, setCartItems] = useState<CartItem[]>([])
 
-  const handleAddToCart = () => {
-    setCartItemCount(cartItemCount + 1);
-    setProductCount(1)
+  const handleAddToCart = (productToAdd: ProductData) => {
+    setCartItems((currentCartItems) => {
+
+      // Check if item has already been added to the cart
+      const existingItem = currentCartItems.find((item) => 
+        item.name === productToAdd.name);
+
+      // If the item has already been added to the cart, just increase it's quantity by 1
+      if(existingItem) {
+        return currentCartItems.map(item => 
+          item.name === productToAdd.name ? {...item, quantity: item.quantity + 1} : item
+        )
+
+      // Otherwise, add the product to the cart with a quantity of 1  
+      } else {
+        return [...currentCartItems, {name: productToAdd.name, price: productToAdd.price, quantity: 1}]
+      }
+    })
+
   };
 
-  // Function to pass to the IncrementIcon
-  const handleIncrement = () => {
-    setCartItemCount(cartItemCount + 1);
-    setProductCount(productCount + 1)
-  };
-
-  // Function to pass to the DecrementIcon
-  const handleDecrement = () => {
-    if (cartItemCount > 0) {
-      setCartItemCount(cartItemCount - 1);
-      setProductCount(productCount - 1)
-    }
-  };
 
   return (
     <div className="lg:p-6">
@@ -47,15 +55,12 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
             desktopImage={product.image.desktop}
             category={product.category}
             price={product.price}
-            onAddToCart={handleAddToCart}
-            handleIncrement={handleIncrement}
-            handleDecrement={handleDecrement}
-            productCount={productCount}
+            onAddToCart={() => handleAddToCart(product)}
           />
         ))}
       </div>
       <div className="md:-mt-4">
-        <Cart cartCount={cartItemCount} />
+        <Cart cartItems={cartItems} />
       </div>
     </div>
     </div>
