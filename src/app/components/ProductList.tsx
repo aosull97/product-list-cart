@@ -39,7 +39,6 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
         { name: productToAdd.name, price: productToAdd.price, quantity: 1 },
       ];
     });
-    setProductCount((prevCount) => prevCount + 1);
   };
 
   const handleIncrement = (productToIncrement: ProductData) => {
