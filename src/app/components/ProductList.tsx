@@ -1,7 +1,7 @@
 'use client'
 
 import Product from "./Product";
-import { useState } from "react";
+import { use, useState } from "react";
 import Cart from "./Cart";
 
 interface ProductData {
@@ -19,28 +19,50 @@ interface CartItem {
 
 const ProductList = ({ products }: { products: ProductData[] }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [productCount, setProductCount] = useState<number>(0)
+  
 
   const handleAddToCart = (productToAdd: ProductData) => {
-    setCartItems((currentCartItems) => {
-
-      // Check if item has already been added to the cart
-      const existingItem = currentCartItems.find((item) => 
-        item.name === productToAdd.name);
-
-      // If the item has already been added to the cart, just increase it's quantity by 1
-      if(existingItem) {
-        return currentCartItems.map(item => 
-          item.name === productToAdd.name ? {...item, quantity: item.quantity + 1} : item
-        )
-
-      // Otherwise, add the product to the cart with a quantity of 1  
-      } else {
-        return [...currentCartItems, {name: productToAdd.name, price: productToAdd.price, quantity: 1}]
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(
+        (item) => item.name === productToAdd.name
+      );
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.name === productToAdd.name
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
       }
-    })
-
+      return [
+        ...prevItems,
+        { name: productToAdd.name, price: productToAdd.price, quantity: 1 },
+      ];
+    });
+    setProductCount((prevCount) => prevCount + 1);
   };
 
+  const handleIncrement = (productToIncrement: ProductData) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.name === productToIncrement.name
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+    setProductCount((prevCount) => prevCount + 1);
+  };
+
+  const handleDecrement = (productToDecrement: ProductData) => {
+    setCartItems((prevItems) => 
+      prevItems.map((item) => 
+        item.name === productToDecrement.name && item.quantity !== 0
+          ? {...item, quantity: item.quantity -1}
+        : item
+      )
+    );
+    setProductCount((prevCount) => prevCount - 1);
+  }
 
   return (
     <div className="lg:p-6">
@@ -56,6 +78,10 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
             category={product.category}
             price={product.price}
             onAddToCart={() => handleAddToCart(product)}
+            onIncrement={() => handleIncrement(product)}
+            onDecrement={() => handleDecrement(product)}
+            productCount={productCount}
+
           />
         ))}
       </div>

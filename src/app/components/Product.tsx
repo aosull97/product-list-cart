@@ -3,6 +3,12 @@
 import AddToCartButton from "./AddToCartButton";
 import { useState } from "react";
 
+interface CartItem {
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 const Product = ({
   name,
   mobileImage,
@@ -10,9 +16,10 @@ const Product = ({
   category,
   price,
   onAddToCart,
-  handleIncrement,
-  handleDecrement,
+  onIncrement,
+  onDecrement,
   productCount,
+  
 
 }: {
   name: string;
@@ -21,9 +28,10 @@ const Product = ({
   category: string;
   price: number;
   onAddToCart: () => void;
-  handleIncrement: () => void;
-  handleDecrement: () => void;
+  onIncrement: () => void;
+  onDecrement: () => void;
   productCount: number;
+
 }) => {
 
   const formattedPrice = price.toFixed(2);
@@ -57,9 +65,10 @@ const Product = ({
         <AddToCartButton 
           onAddToCart={handleAddToCartButtonClick} 
           addToCartButtonClicked={addToCartButtonClicked} 
-          handleIncrement={handleIncrement}
-          handleDecrement={handleDecrement}
+          onIncrement={onIncrement}
+          onDecrement={onDecrement}
           productCount={productCount}
+
           />
           
       </div>

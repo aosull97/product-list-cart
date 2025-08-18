@@ -1,20 +1,31 @@
 import IncrementIcon from "./icons/IncrementIcon";
 import DecrementIcon from "./icons/DecrementIcon";
 
+interface CartItem {
+  name: string;
+  price: number;
+  quantity: number;
+}
+
 const AddToCartButton = ({
   onAddToCart,
   addToCartButtonClicked,
-  handleIncrement,
-  handleDecrement,
-  productCount,
+  onIncrement,
+  onDecrement,
+  productCount
+
   
 }: {
   onAddToCart: () => void;
   addToCartButtonClicked: boolean;
-  handleIncrement: () => void;
-  handleDecrement: () => void;
+  onIncrement: () => void;
+  onDecrement: () => void;
   productCount: number;
+
+
 }) => {
+  
+
   if (addToCartButtonClicked === false || productCount === 0) {
     return (
       <div>
@@ -52,7 +63,7 @@ const AddToCartButton = ({
           
         >
           <button>
-            <DecrementIcon onClick={handleDecrement} />
+            <DecrementIcon onClick={onDecrement} />
           </button>
 
 
@@ -60,7 +71,7 @@ const AddToCartButton = ({
 
 
           <button>
-            <IncrementIcon onClick={handleIncrement} />
+            <IncrementIcon onClick={onIncrement} />
           </button>
         </div>
       </div>
