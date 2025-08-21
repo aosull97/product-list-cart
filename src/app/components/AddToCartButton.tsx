@@ -1,5 +1,6 @@
 import IncrementIcon from "./icons/IncrementIcon";
 import DecrementIcon from "./icons/DecrementIcon";
+import { useState } from "react";
 
 interface CartItem {
   name: string;
@@ -12,21 +13,19 @@ const AddToCartButton = ({
   addToCartButtonClicked,
   onIncrement,
   onDecrement,
-  productCount
-
+  quantity,
   
 }: {
   onAddToCart: () => void;
   addToCartButtonClicked: boolean;
   onIncrement: () => void;
   onDecrement: () => void;
-  productCount: number;
-
+  quantity: number;
 
 }) => {
   
 
-  if (addToCartButtonClicked === false || productCount === 0) {
+  if (addToCartButtonClicked === false || quantity === 0) {
     return (
       <div>
         <button
@@ -67,7 +66,7 @@ const AddToCartButton = ({
           </button>
 
 
-          <p className="font-semibold text-sm px-8">{productCount}</p>
+          <p className="font-semibold text-sm px-8">{quantity}</p>
 
 
           <button>

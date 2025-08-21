@@ -1,7 +1,7 @@
 'use client'
 
 import Product from "./Product";
-import { use, useState } from "react";
+import { useState } from "react";
 import Cart from "./Cart";
 
 interface ProductData {
@@ -9,6 +9,7 @@ interface ProductData {
   image: { mobile: string; desktop: string };
   category: string;
   price: number;
+  quantity: number;
 }
 
 interface CartItem {
@@ -19,9 +20,7 @@ interface CartItem {
 
 const ProductList = ({ products }: { products: ProductData[] }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const [productCount, setProductCount] = useState<number>(0)
   
-
   const handleAddToCart = (productToAdd: ProductData) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find(
@@ -39,6 +38,8 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
         { name: productToAdd.name, price: productToAdd.price, quantity: 1 },
       ];
     });
+
+    productToAdd.quantity += 1;
   };
 
   const handleIncrement = (productToIncrement: ProductData) => {
@@ -49,7 +50,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
           : item
       )
     );
-    setProductCount((prevCount) => prevCount + 1);
+    productToIncrement.quantity++;
   };
 
   const handleDecrement = (productToDecrement: ProductData) => {
@@ -60,7 +61,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
         : item
       )
     );
-    setProductCount((prevCount) => prevCount - 1);
+    productToDecrement.quantity--;
   }
 
   return (
@@ -76,11 +77,10 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
             desktopImage={product.image.desktop}
             category={product.category}
             price={product.price}
+            quantity={product.quantity}
             onAddToCart={() => handleAddToCart(product)}
             onIncrement={() => handleIncrement(product)}
             onDecrement={() => handleDecrement(product)}
-            productCount={productCount}
-
           />
         ))}
       </div>

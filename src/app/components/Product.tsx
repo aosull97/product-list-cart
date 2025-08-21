@@ -15,11 +15,10 @@ const Product = ({
   desktopImage,
   category,
   price,
+  quantity,
   onAddToCart,
   onIncrement,
   onDecrement,
-  productCount,
-  
 
 }: {
   name: string;
@@ -27,10 +26,10 @@ const Product = ({
   desktopImage: string;
   category: string;
   price: number;
+  quantity: number;
   onAddToCart: () => void;
   onIncrement: () => void;
   onDecrement: () => void;
-  productCount: number;
 
 }) => {
 
@@ -63,12 +62,11 @@ const Product = ({
         </div>
 
         <AddToCartButton 
+          quantity={quantity}
           onAddToCart={handleAddToCartButtonClick} 
           addToCartButtonClicked={addToCartButtonClicked} 
           onIncrement={onIncrement}
           onDecrement={onDecrement}
-          productCount={productCount}
-
           />
           
       </div>
