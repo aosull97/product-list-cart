@@ -20,6 +20,7 @@ interface CartItem {
 
 const ProductList = ({ products }: { products: ProductData[] }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [productQuantity, setProductQuantity] = useState<number>(0)
   
   const handleAddToCart = (productToAdd: ProductData) => {
     setCartItems((prevItems) => {

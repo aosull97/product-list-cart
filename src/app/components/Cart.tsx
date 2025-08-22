@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { CiCircleRemove } from "react-icons/ci";
+
 interface CartItem {
   name: string;
   price: number;
@@ -9,9 +12,20 @@ const Cart = ({ cartItems }: { cartItems: CartItem[] }) => {
   const totalCartCount = cartItems.reduce((acc, curr) => acc + curr.quantity, 0)
   const totalItemPrice = cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
 
+  const onRemoveItemClick = (cartItem: CartItem) => {
+    cartItems.map((item) => {
+      if (item.name === cartItem.name) {
+           cartItems.splice(cartItems.indexOf(item), 1)
+      }
+    })
+    console.log(cartItems)
+    return cartItems
+  }
+
+
   
   return (
-    <div className="mx-6 mt-6 p-4 bg-white rounded-lg w-full">
+    <div className="mx-6 mt-6 p-4 bg-white rounded-lg w-80% md:w-80 md:-mt-8">
       <h1 className="font-bold text-xl text-red pb-4">
         Your Cart ({totalCartCount})
       </h1>
@@ -28,14 +42,14 @@ const Cart = ({ cartItems }: { cartItems: CartItem[] }) => {
           </p>
         </div>
       ) : (
-        <div className="flex items-center justify-between">
+        <div className="flex items-left flex-col gap-4">
           {cartItems.map((item) => (
             <div key={item.name}>
               <div>
                 <div>
                   <p className="font-semibold pb-1">{item.name}</p>
                 </div>
-                <div className="flex justify-between pb-1">
+                <div className="flex justify-between pb-1 gap-8">
                   <p className="text-red font-semibold">{item.quantity}x</p>
                   <p className="text-rose-500 italic">
                     @£{item.price.toFixed(2)}
@@ -43,19 +57,19 @@ const Cart = ({ cartItems }: { cartItems: CartItem[] }) => {
                   <p className="font-semibold text-rose-500">
                     £{totalItemPrice.toFixed(2)}
                   </p>
+                  <div className="pl-8">
+                    <button 
+                    onClick={() => onRemoveItemClick(item)}
+                    className="text-rose-500 hover:text-black">
+                      <CiCircleRemove className="h-6 w-6" />
+                    </button>
+                  </div>
                 </div>
+
+                
               </div>
             </div>
           ))}
-          <div>
-            <button>
-            <img
-              src="/images/icon-remove-item.svg"
-              alt="remove item"
-              className="rounded-full border-rose-300 border p-0.5 hover:border-rose-900 hover:"
-            />
-            </button>
-          </div>
         </div>
       )}
     </div>

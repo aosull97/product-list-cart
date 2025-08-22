@@ -3,12 +3,6 @@
 import AddToCartButton from "./AddToCartButton";
 import { useState } from "react";
 
-interface CartItem {
-  name: string;
-  price: number;
-  quantity: number;
-}
-
 const Product = ({
   name,
   mobileImage,
