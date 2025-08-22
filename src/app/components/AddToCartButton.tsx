@@ -1,31 +1,20 @@
 import IncrementIcon from "./icons/IncrementIcon";
 import DecrementIcon from "./icons/DecrementIcon";
-import { useState } from "react";
-
-interface CartItem {
-  name: string;
-  price: number;
-  quantity: number;
-}
 
 const AddToCartButton = ({
   onAddToCart,
-  addToCartButtonClicked,
   onIncrement,
   onDecrement,
   quantity,
   
 }: {
   onAddToCart: () => void;
-  addToCartButtonClicked: boolean;
   onIncrement: () => void;
   onDecrement: () => void;
   quantity: number;
 
 }) => {
-  
-
-  if (addToCartButtonClicked === false || quantity === 0) {
+  if (quantity === 0) {
     return (
       <div>
         <button

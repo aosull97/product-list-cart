@@ -1,7 +1,6 @@
 'use client'
 
 import AddToCartButton from "./AddToCartButton";
-import { useState } from "react";
 
 const Product = ({
   name,
@@ -28,13 +27,6 @@ const Product = ({
 }) => {
 
   const formattedPrice = price.toFixed(2);
-  const [addToCartButtonClicked, setAddToCartButtonClicked] = useState(false);
-
-  const handleAddToCartButtonClick = () => {
-    setAddToCartButtonClicked(true);
-    onAddToCart();
-  };
-
 
   return (
     <div>
@@ -57,8 +49,7 @@ const Product = ({
 
         <AddToCartButton 
           quantity={quantity}
-          onAddToCart={handleAddToCartButtonClick} 
-          addToCartButtonClicked={addToCartButtonClicked} 
+          onAddToCart={onAddToCart}
           onIncrement={onIncrement}
           onDecrement={onDecrement}
           />

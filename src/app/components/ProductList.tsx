@@ -3,13 +3,13 @@
 import Product from "./Product";
 import { useState } from "react";
 import Cart from "./Cart";
+import { get } from "http";
 
 interface ProductData {
   name: string;
   image: { mobile: string; desktop: string };
   category: string;
   price: number;
-  quantity: number;
 }
 
 interface CartItem {
@@ -20,7 +20,10 @@ interface CartItem {
 
 const ProductList = ({ products }: { products: ProductData[] }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const [productQuantity, setProductQuantity] = useState<number>(0)
+
+  const getProductQuantity = (productName: string) => {
+    return cartItems.find((item) => item.name === productName)?.quantity ?? 0
+  }
   
   const handleAddToCart = (productToAdd: ProductData) => {
     setCartItems((prevItems) => {
@@ -39,8 +42,6 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
         { name: productToAdd.name, price: productToAdd.price, quantity: 1 },
       ];
     });
-
-    productToAdd.quantity += 1;
   };
 
   const handleIncrement = (productToIncrement: ProductData) => {
@@ -51,7 +52,6 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
           : item
       )
     );
-    productToIncrement.quantity++;
   };
 
   const handleDecrement = (productToDecrement: ProductData) => {
@@ -62,8 +62,12 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
         : item
       )
     );
-    productToDecrement.quantity--;
   }
+
+  const handleRemoveItemFromCart = (itemToRemove: CartItem) => {
+    setCartItems((prevCartItems) => prevCartItems.filter((item) => item.name !== itemToRemove.name))
+  }
+
 
   return (
     <div className="lg:p-6">
@@ -78,7 +82,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
             desktopImage={product.image.desktop}
             category={product.category}
             price={product.price}
-            quantity={product.quantity}
+            quantity={getProductQuantity(product.name)}
             onAddToCart={() => handleAddToCart(product)}
             onIncrement={() => handleIncrement(product)}
             onDecrement={() => handleDecrement(product)}
@@ -86,7 +90,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
         ))}
       </div>
       <div className="md:-mt-4">
-        <Cart cartItems={cartItems} />
+        <Cart cartItems={cartItems} onRemoveItem={handleRemoveItemFromCart}/>
       </div>
     </div>
     </div>

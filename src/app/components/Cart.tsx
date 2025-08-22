@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { CiCircleRemove } from "react-icons/ci";
 
 interface CartItem {
@@ -7,22 +6,13 @@ interface CartItem {
   quantity: number;
 }
 
-const Cart = ({ cartItems }: { cartItems: CartItem[] }) => {
+interface CartProps {
+  cartItems: CartItem[];
+  onRemoveItem: (item: CartItem) => void;
+}
 
+const Cart = ({ cartItems, onRemoveItem }: CartProps) => {
   const totalCartCount = cartItems.reduce((acc, curr) => acc + curr.quantity, 0)
-  const totalItemPrice = cartItems.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
-
-  const onRemoveItemClick = (cartItem: CartItem) => {
-    cartItems.map((item) => {
-      if (item.name === cartItem.name) {
-           cartItems.splice(cartItems.indexOf(item), 1)
-      }
-    })
-    console.log(cartItems)
-    return cartItems
-  }
-
-
   
   return (
     <div className="mx-6 mt-6 p-4 bg-white rounded-lg w-80% md:w-80 md:-mt-8">
@@ -49,24 +39,22 @@ const Cart = ({ cartItems }: { cartItems: CartItem[] }) => {
                 <div>
                   <p className="font-semibold pb-1">{item.name}</p>
                 </div>
-                <div className="flex justify-between pb-1 gap-8">
+                <div className="flex justify-between gap-4 items-center pb-1">
                   <p className="text-red font-semibold">{item.quantity}x</p>
-                  <p className="text-rose-500 italic">
+                  <p className="text-rose-500 italic px-2">
                     @£{item.price.toFixed(2)}
                   </p>
-                  <p className="font-semibold text-rose-500">
-                    £{totalItemPrice.toFixed(2)}
+                  <p className="font-semibold text-rose-500 mr-auto">
+                    £{(item.price * item.quantity).toFixed(2)}
                   </p>
-                  <div className="pl-8">
+                  <div>
                     <button 
-                    onClick={() => onRemoveItemClick(item)}
+                    onClick={() => onRemoveItem(item)}
                     className="text-rose-500 hover:text-black">
                       <CiCircleRemove className="h-6 w-6" />
                     </button>
                   </div>
                 </div>
-
-                
               </div>
             </div>
           ))}
