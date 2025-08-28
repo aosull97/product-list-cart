@@ -9,10 +9,12 @@ interface CartItem {
 interface CartProps {
   cartItems: CartItem[];
   onRemoveItem: (item: CartItem) => void;
+  onOrderConfirmed: () => void;
 }
 
-const Cart = ({ cartItems, onRemoveItem }: CartProps) => {
+const Cart = ({ cartItems, onRemoveItem, onOrderConfirmed }: CartProps) => {
   const totalCartCount = cartItems.reduce((acc, curr) => acc + curr.quantity, 0)
+  const totalCartAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)
   
   return (
     <div className="mx-6 mt-6 p-4 bg-white rounded-lg w-80% md:w-80 md:-mt-8">
@@ -34,7 +36,7 @@ const Cart = ({ cartItems, onRemoveItem }: CartProps) => {
       ) : (
         <div className="flex items-left flex-col gap-4">
           {cartItems.map((item) => (
-            <div key={item.name}>
+            <div className="border-b pb-2" key={item.name}>
               <div>
                 <div>
                   <p className="font-semibold pb-1">{item.name}</p>
@@ -48,9 +50,10 @@ const Cart = ({ cartItems, onRemoveItem }: CartProps) => {
                     £{(item.price * item.quantity).toFixed(2)}
                   </p>
                   <div>
-                    <button 
-                    onClick={() => onRemoveItem(item)}
-                    className="text-rose-500 hover:text-black">
+                    <button
+                      onClick={() => onRemoveItem(item)}
+                      className="text-rose-500 hover:text-black"
+                    >
                       <CiCircleRemove className="h-6 w-6" />
                     </button>
                   </div>
@@ -58,6 +61,25 @@ const Cart = ({ cartItems, onRemoveItem }: CartProps) => {
               </div>
             </div>
           ))}
+          <div className="flex justify-between items-center text-rose-900">
+            <p>Order Total</p>
+            <p className="font-bold text-2xl">£{totalCartAmount}</p>
+          </div>
+          <div className="p-4 rounded-md bg-rose-50">
+            <div className="flex items-center justify-center">
+              <img src="/images/icon-carbon-neutral.svg" alt="Tree icon" />
+              <p className="px-2 text-sm text-rose-900">
+                This is a <a className="font-semibold">carbon-neutral</a>{" "}
+                delivery
+              </p>
+            </div>
+          </div>
+          <div>
+            <button 
+            className="bg-red p-2 text-white font-semibold text-center w-full rounded-full hover:bg-dark-red"
+            onClick={onOrderConfirmed}
+            >Confirm Order</button>
+          </div>
         </div>
       )}
     </div>

@@ -3,7 +3,7 @@
 import Product from "./Product";
 import { useState } from "react";
 import Cart from "./Cart";
-import { get } from "http";
+import OrderConfirmation from "./OrderConfirmation";
 
 interface ProductData {
   name: string;
@@ -20,6 +20,8 @@ interface CartItem {
 
 const ProductList = ({ products }: { products: ProductData[] }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [orderConfirmed, setOrderConfirmed] = useState<boolean>(false)
+  
 
   const getProductQuantity = (productName: string) => {
     return cartItems.find((item) => item.name === productName)?.quantity ?? 0
@@ -68,33 +70,76 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
     setCartItems((prevCartItems) => prevCartItems.filter((item) => item.name !== itemToRemove.name))
   }
 
+  const handleOrderConfirmation = () => {
+    setOrderConfirmed(true)
+    console.log(orderConfirmed)
+  }
 
-  return (
-    <div className="lg:p-6">
+  return orderConfirmed ? (
+    <div className="relative">
+      <div className="brightness-50 backdrop-brightness-50 lg:p-6">
       <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
-    <div className="lg:flex">
-      <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3 lg:w-4/5">
-        {products.map((product) => (
-          <Product
-            key={`${product.name}-${product.category}`}
-            name={product.name}
-            mobileImage={product.image.mobile}
-            desktopImage={product.image.desktop}
-            category={product.category}
-            price={product.price}
-            quantity={getProductQuantity(product.name)}
-            onAddToCart={() => handleAddToCart(product)}
-            onIncrement={() => handleIncrement(product)}
-            onDecrement={() => handleDecrement(product)}
+      <div className="lg:flex">
+        <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3 lg:w-4/5">
+          {products.map((product) => (
+            <Product
+              key={`${product.name}-${product.category}`}
+              name={product.name}
+              mobileImage={product.image.mobile}
+              desktopImage={product.image.desktop}
+              category={product.category}
+              price={product.price}
+              quantity={getProductQuantity(product.name)}
+              onAddToCart={() => handleAddToCart(product)}
+              onIncrement={() => handleIncrement(product)}
+              onDecrement={() => handleDecrement(product)}
+            />
+          ))}
+        </div>
+        <div className="md:-mt-4">
+          <Cart
+            cartItems={cartItems}
+            onRemoveItem={handleRemoveItemFromCart}
+            onOrderConfirmed={handleOrderConfirmation}
           />
-        ))}
+        </div>
       </div>
-      <div className="md:-mt-4">
-        <Cart cartItems={cartItems} onRemoveItem={handleRemoveItemFromCart}/>
+      </div>
+      <div className="absolute top-1/4 left-1/2 bg-white brightness-100 backdrop-brightness-100">
+        <OrderConfirmation />
       </div>
     </div>
+  ) : (
+    <div className="lg:p-6 relative">
+      <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
+      <div className="lg:flex">
+        <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3 lg:w-4/5">
+          {products.map((product) => (
+            <Product
+              key={`${product.name}-${product.category}`}
+              name={product.name}
+              mobileImage={product.image.mobile}
+              desktopImage={product.image.desktop}
+              category={product.category}
+              price={product.price}
+              quantity={getProductQuantity(product.name)}
+              onAddToCart={() => handleAddToCart(product)}
+              onIncrement={() => handleIncrement(product)}
+              onDecrement={() => handleDecrement(product)}
+            />
+          ))}
+        </div>
+        <div className="md:-mt-4">
+          <Cart
+            cartItems={cartItems}
+            onRemoveItem={handleRemoveItemFromCart}
+            onOrderConfirmed={handleOrderConfirmation}
+          />
+        </div>
+      </div>
     </div>
   );
+
 };
 
 export default ProductList;

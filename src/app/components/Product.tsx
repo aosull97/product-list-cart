@@ -43,7 +43,7 @@ const Product = ({
           <img
             src={desktopImage}
             alt={name}
-            className="rounded-lg w-full pt-2"
+            className="rounded-2xl w-full pt-2"
           />
         </div>
 
