@@ -40,11 +40,11 @@ const Product = ({
           />
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden md:block pt-2">
           <img
             src={desktopImage}
             alt={name}
-            className="rounded-2xl w-full pt-2"
+            className="rounded-2xl w-full object-fill"
           />
         </div>
 
@@ -73,11 +73,11 @@ const Product = ({
           />
         </div>
 
-        <div className="hidden md:block">
+        <div className="hidden md:block pt-2">
           <img
             src={desktopImage}
             alt={name}
-            className="rounded-2xl w-full pt-2 border-red border-2"
+            className="rounded-2xl w-full border-red border-2"
           />
         </div>
 

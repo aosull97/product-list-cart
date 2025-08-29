@@ -16,7 +16,7 @@ const Cart = ({ cartItems, onRemoveItem, onOrderConfirmed }: CartProps) => {
   const totalCartAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)
   
   return (
-    <div className="mx-6 mt-6 p-6 bg-white rounded-lg w-80% md:w-80 md:-mt-8">
+    <div className="mx-6 mt-12 border-2 p-6 bg-white rounded-lg w-80% md:w-80 lg:-mt-12">
       <h1 className="font-bold text-xl text-red pb-6">
         Your Cart ({totalCartCount})
       </h1>
@@ -67,7 +67,7 @@ const Cart = ({ cartItems, onRemoveItem, onOrderConfirmed }: CartProps) => {
           <div className="p-4 rounded-md bg-rose-50">
             <div className="flex items-center justify-center">
               <img src="/images/icon-carbon-neutral.svg" alt="Tree icon" />
-              <p className="px-2 text-sm text-rose-900">
+              <p className="px-2 text-xs text-rose-900">
                 This is a <a className="font-semibold">carbon-neutral</a>{" "}
                 delivery
               </p>

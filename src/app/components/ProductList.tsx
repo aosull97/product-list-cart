@@ -101,7 +101,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
             />
           ))}
         </div>
-        <div className="md:-mt-4">
+        <div>
           <Cart
             cartItems={cartItems}
             onRemoveItem={handleRemoveItemFromCart}
@@ -110,7 +110,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
         </div>
       </div>
       </div>
-      <div className="absolute top-16 md:top-48 md:left-1/3 bg-white brightness-100 backdrop-brightness-100 rounded-3xl">
+      <div className="absolute w-full top-16 md:top-48 md:w-2/3 md:left-44 lg:w-1/3 lg:left-1/3 bg-white brightness-100 backdrop-brightness-100 rounded-3xl">
         <OrderConfirmation
         cartItems={cartItems}
         onNewOrderStarted={handleNewOrderStarted}
@@ -118,7 +118,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
       </div>
     </div>
   ) : (
-    <div className="lg:p-6 relative">
+    <div className="lg:p-6 relative pb-12">
       <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
       <div className="lg:flex">
         <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3 lg:w-4/5">
