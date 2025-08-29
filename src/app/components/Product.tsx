@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import AddToCartButton from "./AddToCartButton";
 
 const Product = ({
@@ -33,18 +34,22 @@ const Product = ({
     <div>
       <div className="relative">
         <div className="block md:hidden pt-2">
-          <img
+          <Image
             src={mobileImage}
             alt={name}
             className="rounded-xl w-full"
+            width={300}
+            height={300}
           />
         </div>
 
         <div className="hidden md:block pt-2">
-          <img
+          <Image
             src={desktopImage}
             alt={name}
             className="rounded-2xl w-full object-fill"
+            width={300}
+            height={300}
           />
         </div>
 
@@ -61,23 +66,28 @@ const Product = ({
         <p className="font-semibold text-sm">{name}</p>
         <p className="text-red font-semibold">£{formattedPrice}</p>
       </div>
+
     </div>
     :
         <div>
       <div className="relative">
         <div className="block md:hidden pt-2">
-          <img
+          <Image
             src={mobileImage}
             alt={name}
             className="rounded-xl w-full border-red border-2"
+            width={300}
+            height={300}
           />
         </div>
 
         <div className="hidden md:block pt-2">
-          <img
+          <Image
             src={desktopImage}
             alt={name}
             className="rounded-2xl w-full border-red border-2"
+            width={300}
+            height={300}
           />
         </div>
 
