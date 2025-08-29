@@ -1,37 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Mentor - Product list with cart solution
 
-## Getting Started
+This is a solution to the [Product list with cart challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-list-with-cart-5MmqLVAp_d).
 
-First, run the development server:
+## Table of contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- [Frontend Mentor - Product list with cart solution](#frontend-mentor---product-list-with-cart-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [The challenge](#the-challenge)
+    - [Screenshot](#screenshot)
+    - [Links](#links)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+    - [Useful resources](#useful-resources)
+  - [Author](#author)
+
+## Overview
+
+### The challenge
+The challenge was to build a product list page that includes a functional cart and get it looking as close to the design as possible. 
+
+### Screenshot
+
+![](/images/page-screenshot.png)
+
+### Links
+
+- Live Site URL: [https://aosull97.github.io/product-list-cart/]
+
+## My process
+I first looked over the provided design brief to see what the finished product should look like. Then I added the basic structure with HTML, including any images that needed displaying. I then added styling with Tailwind CSS until it looked as close to the design as possible.
+
+### Built with
+
+- Next.js
+- Tailwind CSS
+- HTML5
+- TypeScript
+
+### What I learned
+
+I learnt how to use the reduce() method to perform a function on items in an array.  
+
+```tsx
+const totalCartAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Useful resources
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Reduce basics video](https://www.youtube.com/watch?reload=9&app=desktop&v=Wl98eZpkp-c) - This video helped me to understand how to use the reduce() method.
+- [Google Fonts](https://fonts.google.com/) - I could find the font requested in the design brief here.
+- [Tailwind documentation](https://tailwindcss.com/docs/installation/using-vite) - I referred to this documentation when applying styling with Tailwind CSS. 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Author
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# product-list-cart
+- Frontend Mentor - [@aosull97](https://www.frontendmentor.io/profile/aosull97)
+- LinkedIn - [aliceosullivan97](www.linkedin.com/in/aliceosullivan97)
