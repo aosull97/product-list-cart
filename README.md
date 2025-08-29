@@ -27,7 +27,7 @@ The challenge was to build a product list page that includes a functional cart a
 
 ### Links
 
-- Live Site URL: [https://aosull97.github.io/product-list-cart/]
+- Live Site URL: [product-list-cart-rose.vercel.app](https://product-list-cart-rose.vercel.app/)
 
 ## My process
 I first looked over the provided design brief to see what the finished product should look like. Then I added the basic structure with HTML, including any images that needed displaying. I then added styling with Tailwind CSS until it looked as close to the design as possible.
