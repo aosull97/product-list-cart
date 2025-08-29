@@ -16,7 +16,7 @@ const Cart = ({ cartItems, onRemoveItem, onOrderConfirmed }: CartProps) => {
   const totalCartAmount = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2)
   
   return (
-    <div className="mx-6 mt-12 border-2 p-6 bg-white rounded-lg w-80% md:w-80 lg:-mt-12">
+    <div className="mx-6 mt-12 border-2 p-6 bg-white rounded-lg w-80% md:w-80% lg:-mt-12">
       <h1 className="font-bold text-xl text-red pb-6">
         Your Cart ({totalCartCount})
       </h1>
