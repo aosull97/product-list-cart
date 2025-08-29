@@ -23,7 +23,7 @@ The challenge was to build a product list page that includes a functional cart a
 
 ### Screenshot
 
-![](/images/page-screenshot.png)
+![](/public/images/page-screenshot.png)
 
 ### Links
 
