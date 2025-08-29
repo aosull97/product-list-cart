@@ -80,8 +80,9 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
     setOrderConfirmed(false)
   }
 
-  const PageContent = () => (
-    <>
+  return orderConfirmed ? (
+    <div className="relative">
+      <div className="brightness-50 backdrop-brightness-50 pb-12 lg:p-6">
       <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
       <div className="lg:flex">
         <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3 lg:w-4/5">
@@ -100,7 +101,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
             />
           ))}
         </div>
-        <div className={!orderConfirmed ? "md:-mt-4" : ""}>
+        <div>
           <Cart
             cartItems={cartItems}
             onRemoveItem={handleRemoveItemFromCart}
@@ -108,30 +109,45 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
           />
         </div>
       </div>
-    </>
-  );
-
-  return (
-    <div className="relative">
-      {orderConfirmed ? (
-        <>
-          <div className="brightness-50 backdrop-brightness-50 pb-12 lg:p-6">
-            <PageContent />
-          </div>
-          <div className="absolute w-full top-16 md:top-48 md:w-2/3 md:left-44 lg:w-1/3 lg:left-1/3 bg-white brightness-100 backdrop-brightness-100 rounded-3xl">
-            <OrderConfirmation
-              cartItems={cartItems}
-              onNewOrderStarted={handleNewOrderStarted}
+      </div>
+      <div className="absolute w-full top-16 md:top-48 md:w-2/3 md:left-44 lg:w-1/3 lg:left-1/3 bg-white brightness-100 backdrop-brightness-100 rounded-3xl">
+        <OrderConfirmation
+        cartItems={cartItems}
+        onNewOrderStarted={handleNewOrderStarted}
+        />
+      </div>
+    </div>
+  ) : (
+    <div className="lg:p-6 relative pb-12">
+      <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
+      <div className="lg:flex">
+        <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3 lg:w-4/5">
+          {products.map((product) => (
+            <Product
+              key={`${product.name}-${product.category}`}
+              name={product.name}
+              mobileImage={product.image.mobile}
+              desktopImage={product.image.desktop}
+              category={product.category}
+              price={product.price}
+              quantity={getProductQuantity(product.name)}
+              onAddToCart={() => handleAddToCart(product)}
+              onIncrement={() => handleIncrement(product)}
+              onDecrement={() => handleDecrement(product)}
             />
-          </div>
-        </>
-      ) : (
-        <div className="lg:p-6 pb-12">
-          <PageContent />
+          ))}
         </div>
-      )}
+        <div className="md:-mt-4">
+          <Cart
+            cartItems={cartItems}
+            onRemoveItem={handleRemoveItemFromCart}
+            onOrderConfirmed={handleOrderConfirmation}
+          />
+        </div>
+      </div>
     </div>
   );
+
 };
 
 export default ProductList;
