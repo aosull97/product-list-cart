@@ -16,13 +16,13 @@ interface CartItem {
   name: string;
   price: number;
   quantity: number;
+  image: { mobile: string; desktop: string };
 }
 
 const ProductList = ({ products }: { products: ProductData[] }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [orderConfirmed, setOrderConfirmed] = useState<boolean>(false)
   
-
   const getProductQuantity = (productName: string) => {
     return cartItems.find((item) => item.name === productName)?.quantity ?? 0
   }
@@ -41,7 +41,7 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
       }
       return [
         ...prevItems,
-        { name: productToAdd.name, price: productToAdd.price, quantity: 1 },
+        { name: productToAdd.name, price: productToAdd.price, quantity: 1, image: {mobile: productToAdd.image.mobile, desktop: productToAdd.image.desktop} },
       ];
     });
   };
@@ -72,12 +72,17 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
 
   const handleOrderConfirmation = () => {
     setOrderConfirmed(true)
-    console.log(orderConfirmed)
+    window.scrollTo({top: 0, behavior: "smooth"});
+  }
+
+  const handleNewOrderStarted = () => {
+    setCartItems([])
+    setOrderConfirmed(false)
   }
 
   return orderConfirmed ? (
     <div className="relative">
-      <div className="brightness-50 backdrop-brightness-50 lg:p-6">
+      <div className="brightness-50 backdrop-brightness-50 pb-12 lg:p-6">
       <h1 className="pl-6 p-4 font-bold text-3xl">Desserts</h1>
       <div className="lg:flex">
         <div className="flex flex-col items-center gap-4 w-100% px-6 md:grid md:grid-col md:grid-cols-3 lg:w-4/5">
@@ -105,8 +110,11 @@ const ProductList = ({ products }: { products: ProductData[] }) => {
         </div>
       </div>
       </div>
-      <div className="absolute top-1/4 left-1/2 bg-white brightness-100 backdrop-brightness-100">
-        <OrderConfirmation />
+      <div className="absolute top-16 md:top-48 md:left-1/3 bg-white brightness-100 backdrop-brightness-100 rounded-3xl">
+        <OrderConfirmation
+        cartItems={cartItems}
+        onNewOrderStarted={handleNewOrderStarted}
+        />
       </div>
     </div>
   ) : (

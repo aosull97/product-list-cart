@@ -16,7 +16,7 @@ export default async function Home() {
 
   return (
     <div
-      className={`${redHatText.className} bg-rose-50 text-base text-rose-900 pb-6`}
+      className={`${redHatText.className} bg-rose-50 text-base text-rose-900`}
     >
       <ProductList products={products} />
     </div>
